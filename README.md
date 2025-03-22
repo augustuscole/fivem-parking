@@ -2,6 +2,10 @@
 
 A simple vehicle garage system created with a more versatile structure, allowing players to conveniently store and retrieve owned vehicles from any location.
 
+[![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
+[![](https://img.shields.io/github/contributors/augustuscole/fivem-parking?logo=github)](https://github.com/augustuscole/fivem-parking/graphs/contributors)
+[![](https://img.shields.io/github/last-commit/augustuscole/fivem-parking?logo=github)](https://github.com/augustuscole/fivem-parking/commits/main)
+
 ## Features
 
 - Utilizes [Prisma](https://www.prisma.io) to interact with your database.
@@ -54,7 +58,7 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 #### [ADMIN] `/addvehicle [model] [playerId]`
 
-- Adds a vehicle to the target player's vehicle garage and database.
+- Adds a vehicle to the database and target player's vehicle garage.
 
 #### [ADMIN] `/adeletevehicle [plate]` _(alias: `/delveh`)_
 
@@ -66,7 +70,7 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 - Spawns a vehicle and saves it to the database and your vehicle garage.
 
-#### [ADMIN] `/aviewvehicles [playerId]` _(alias: `/viewveh`)_
+#### [ADMIN] `/alist [playerId]` _(alias: `/avg`)_
 
 - Displays a list of the target player's owned vehicles.
 
