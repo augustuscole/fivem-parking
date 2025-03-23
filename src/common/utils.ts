@@ -1,6 +1,14 @@
 import { cache } from '@overextended/ox_lib';
 import fetch from 'node-fetch';
-import * as Config from '../../static/config.json';
+import Config from './config';
+
+export function loadFile(path: string) {
+  return LoadResourceFile(cache.resource, path);
+}
+
+export function loadJson<T = unknown>(path: string): T {
+  return JSON.parse(loadFile(path)) as T;
+}
 
 export function hasItem(source: number, item: string, amount: number = 1) {
   return exports.ox_inventory.GetItemCount(source, item) >= amount;

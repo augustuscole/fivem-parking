@@ -1,7 +1,7 @@
 import * as Cfx from '@nativewrappers/fivem';
 import { CreateVehicle, GetPlayer, GetVehicle } from '@overextended/ox_core/server';
 import { triggerClientCallback } from '@overextended/ox_lib/server';
-import * as Config from '../../../static/config.json';
+import Config from '../../common/config';
 import { getArea, hasItem, removeItem, sendChatMessage, sendLog } from '../../common/utils';
 import db from '../db';
 
