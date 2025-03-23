@@ -11,9 +11,6 @@ importers:
       '@nativewrappers/fivem':
         specifier: ^0.0.89
         version: 0.0.89
-      '@nativewrappers/server':
-        specifier: ^0.0.89
-        version: 0.0.89
       '@overextended/ox_core':
         specifier: ^1.5.1
         version: 1.5.1
@@ -271,9 +268,6 @@ packages:
 
   '@nativewrappers/server@0.0.56':
     resolution: {integrity: sha512-8TxpIBdBIMj/tiKh7zrJSNUDI0tUo9arJwwpVOSh5XM6c/A8KzW0H1RR16VE3nBYAbjLWDKqGSzuQsVSCLWT5Q==}
-
-  '@nativewrappers/server@0.0.89':
-    resolution: {integrity: sha512-aKrW5zMY21g4XX/xkLEOvTdEbsR5iQhVulfpXtwDMYZ9hBSlP6lYNYVLEjrx4n0n+lvHYIpSOFX1pmuB1SXvjA==}
 
   '@overextended/ox_core@1.5.1':
     resolution: {integrity: sha512-HGyRFOJNhAmHVX+PY8xb46TdCMWrDQDcnUBPlalZAjSmfckcaxbUkqdufd4nyfWITSrshXTzfJCu1Iww9CDhfg==}
@@ -541,8 +535,6 @@ snapshots:
   '@nativewrappers/server@0.0.56':
     dependencies:
       '@nativewrappers/common': 0.0.56
-
-  '@nativewrappers/server@0.0.89': {}
 
   '@overextended/ox_core@1.5.1':
     dependencies:

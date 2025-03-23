@@ -23,7 +23,6 @@
   "bugs": "https://github.com/augustuscole/fivem-parking/issues",
   "dependencies": {
     "@nativewrappers/fivem": "^0.0.89",
-    "@nativewrappers/server": "^0.0.89",
     "@overextended/ox_core": "^1.5.1",
     "@overextended/ox_lib": "latest",
     "@prisma/client": "^6.5.0",
