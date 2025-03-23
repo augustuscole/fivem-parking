@@ -42,10 +42,8 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
     return;
   }
 
-  await Cfx.Delay(100);
-
   setImmediate(() => {
-    TaskWarpPedIntoVehicle(GetPlayerPed(source), vehicleId, -1);
+    TaskWarpPedIntoVehicle(GetPlayerPed(source), success.entity, -1);
   });
 
   await db.setVehicleStatus(vehicleId, 'outside');
