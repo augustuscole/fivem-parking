@@ -42,6 +42,12 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
     return;
   }
 
+  await Cfx.Delay(100);
+
+  setImmediate(() => {
+    TaskWarpPedIntoVehicle(GetPlayerPed(source), vehicleId, -1);
+  });
+
   await db.setVehicleStatus(vehicleId, 'outside');
   sendChatMessage(source, `^#5e81acYou paid ^#ffffff$${Config.Garage.RetrieveCost} ^#5e81acto retrieve your vehicle.`);
   await sendLog(
