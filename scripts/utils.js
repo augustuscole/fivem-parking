@@ -1,6 +1,6 @@
 import { readFile, stat, writeFile } from 'fs/promises';
 
-export async function generateManifest({ client, server, dependencies, metadata }) {
+export async function generateManifest({ client, server, files, dependencies, metadata }) {
   const data = await getJson('package.json');
   const fxmanifest = {
     fx_version: 'cerulean',
@@ -24,13 +24,14 @@ export async function generateManifest({ client, server, dependencies, metadata 
   const append = (type, option) => {
     if (option?.length > 0) {
       output.push(
-        `\n${type}${type === 'dependencies' ? '' : '_scripts'} {${option.map((item) => `\n\t'${item}'`).join(',')}\n}`,
+        `\n${type}${type === 'dependencies' || type === 'files' ? '' : '_scripts'} {${option.map((item) => `\n\t'${item}'`).join(',')}\n}`,
       );
     }
   };
 
   append('client', client);
   append('server', server);
+  append('files', files);
   append('dependencies', dependencies);
 
   await writeFile('fxmanifest.lua', output.join('\n'));

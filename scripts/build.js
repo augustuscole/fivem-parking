@@ -58,6 +58,7 @@ async function build(development) {
                 await generateManifest({
                   client: ['dist/client/*.js'],
                   server: ['dist/server/*.js'],
+                  files: ['locales/*.json'],
                   dependencies: ['/server:12913', '/onesync', 'ox_lib', 'ox_core', 'ox_inventory'],
                   metadata: { node_version: '22' },
                 });
