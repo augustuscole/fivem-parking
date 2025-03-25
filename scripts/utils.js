@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs/promises';
+import { readFile, stat, writeFile } from 'fs/promises';
 
 export async function generateManifest({ client, server, dependencies, metadata }) {
   const data = await getJson('package.json');
@@ -36,14 +36,19 @@ export async function generateManifest({ client, server, dependencies, metadata 
   await writeFile('fxmanifest.lua', output.join('\n'));
 }
 
-async function getUtf8(path) {
+export async function exists(path) {
+  try {
+    await stat(path);
+    return true;
+  } catch (err) {}
+
+  return false;
+}
+
+export async function getUtf8(path) {
   return await readFile(path, 'utf8');
 }
 
 export async function getJson(path) {
   return JSON.parse(await getUtf8(path));
-}
-
-export async function getFile(path) {
-  return await getUtf8(path);
 }
