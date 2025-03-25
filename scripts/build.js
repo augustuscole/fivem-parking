@@ -1,43 +1,8 @@
 import { context } from 'esbuild';
-import { access, constants, readFile, writeFile } from 'fs/promises';
+import { access, constants } from 'fs/promises';
 import path from 'path';
 import process from 'process';
-
-async function generateManifest({ client, server, dependencies, metadata }) {
-  const data = JSON.parse(await readFile('package.json', 'utf8'));
-  const fxmanifest = {
-    fx_version: 'cerulean',
-    game: 'gta5',
-    name: data.name,
-    description: data.description,
-    author: data.author,
-    version: data.version,
-    repository: data.repository?.url,
-    license: data.license,
-    ...(metadata || {}),
-  };
-
-  let output = [];
-  for (const [key, value] of Object.entries(fxmanifest)) {
-    if (value) {
-      output.push(`${key} '${value}'`);
-    }
-  }
-
-  const append = (type, option) => {
-    if (option?.length > 0) {
-      output.push(
-        `\n${type}${type === 'dependencies' ? '' : '_scripts'} {${option.map((item) => `\n\t'${item}'`).join(',')}\n}`,
-      );
-    }
-  };
-
-  append('client', client);
-  append('server', server);
-  append('dependencies', dependencies);
-
-  await writeFile('fxmanifest.lua', output.join('\n'));
-}
+import { generateManifest, getFile } from './utils.js';
 
 async function build(development) {
   const ctx = await context({
@@ -52,7 +17,7 @@ async function build(development) {
         name: 'build',
         setup(build) {
           build.onLoad({ filter: /.\.(js|ts)$/ }, async (args) => {
-            const data = await readFile(args.path, 'utf-8');
+            const data = await getFile(args.path);
             const escape = (p) => (/^win/.test(process.platform) ? p.replace(/\\/g, '/') : p);
 
             const global = /__(?=(filename|dirname))/g;
