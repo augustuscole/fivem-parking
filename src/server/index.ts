@@ -2,6 +2,7 @@ import * as Cfx from '@nativewrappers/fivem';
 import { GetPlayer, SpawnVehicle } from '@overextended/ox_core/server';
 import { addCommand, onClientCallback } from '@overextended/ox_lib/server';
 import Config from '../common/config';
+import Locale from '../common/locale';
 import { hasItem, removeItem, sendChatMessage, sendLog } from '../common/utils';
 import db from './db';
 import { Garage } from './garage/class';
@@ -13,21 +14,18 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
 
   const vehicle = await db.getVehicleById(vehicleId);
   if (!vehicle) {
-    sendChatMessage(source, '^#d73232Something went wrong.');
+    sendChatMessage(source, Locale('something_went_wrong'));
     return false;
   }
 
   const owner = await db.getVehicleOwner(vehicleId, player.charId);
   if (!owner) {
-    sendChatMessage(source, '^#d73232You cannot spawn a vehicle you do not own!');
+    sendChatMessage(source, Locale('not_vehicle_owner'));
     return false;
   }
 
   if (!hasItem(source, 'money', Config.Garage.RetrieveCost)) {
-    sendChatMessage(
-      source,
-      `^#d73232You need ^#ffffff$${Config.Garage.RetrieveCost} ^#d73232to retrieve your vehicle.`,
-    );
+    sendChatMessage(source, Locale('not_enough_money'));
     return false;
   }
 
@@ -38,7 +36,7 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
 
   const success = await SpawnVehicle(vehicleId, player.getCoords());
   if (!success) {
-    sendChatMessage(source, '^#d73232Failed to spawn the vehicle.');
+    sendChatMessage(source, Locale('failed_to_spawn'));
     return;
   }
 
@@ -47,7 +45,7 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
   });
 
   await db.setVehicleStatus(vehicleId, 'outside');
-  sendChatMessage(source, `^#5e81acYou paid ^#ffffff$${Config.Garage.RetrieveCost} ^#5e81acto retrieve your vehicle.`);
+  sendChatMessage(source, Locale('success_spawned'));
   await sendLog(
     `[VEHICLE] ${player.get('name')} (${source}) just spawned their vehicle #${vehicleId}! Position: ${player.getCoords()[0]} ${player.getCoords()[1]} ${player.getCoords()[2]} - dimension: ${GetPlayerRoutingBucket(String(source))}.`,
   );

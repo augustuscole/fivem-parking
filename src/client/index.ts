@@ -1,4 +1,5 @@
 import lib, { onServerCallback, triggerServerCallback } from '@overextended/ox_lib/client';
+import Locale from '../common/locale';
 
 onServerCallback(
   'fivem-parking:client:listVehicles',
@@ -15,7 +16,7 @@ onServerCallback(
 
     lib.registerContext({
       id: 'vehicle_menu',
-      title: 'Your Vehicles',
+      title: Locale('your_vehicles'),
       options: options,
     });
 
