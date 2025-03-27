@@ -1,10 +1,8 @@
+[![](https://github.com/user-attachments/assets/3e7cc18b-8e52-4593-95f1-3b42dfdd3ed1)](https://stand-with-ukraine.pp.ua)
+
 # fivem-parking
 
-A simple vehicle garage system created with a more versatile structure, allowing players to conveniently store and retrieve owned vehicles from any location.
-
-[![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
-[![](https://img.shields.io/github/contributors/augustuscole/fivem-parking?logo=github)](https://github.com/augustuscole/fivem-parking/graphs/contributors)
-[![](https://img.shields.io/github/last-commit/augustuscole/fivem-parking?logo=github)](https://github.com/augustuscole/fivem-parking/commits/main)
+A realistic vehicle garage system for FiveM, allowing players to store and retrieve owned vehicles from any location.
 
 ## Features
 
@@ -21,7 +19,7 @@ A simple vehicle garage system created with a more versatile structure, allowing
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [ox_inventory](https://github.com/overextended/ox_inventory)
 
-### Building this resource
+### Build
 
 1. Download and install the LTS version of [Node.js](https://nodejs.org/en).
 2. Open a command-line terminal (e.g., Terminal, Command Prompt).
@@ -40,43 +38,22 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 ### Commands
 
-#### `/list` _(alias: `/vg`)_
+#### Player Commands
 
-- Displays a list of your owned vehicles along with their status and allows you to spawn them.
+- `/list` _(alias: `/vg`)_ – Lists owned vehicles and their status; only `stored` vehicles can be spawned.
+- `/park` _(alias: `/vp`)_ – Store a vehicle in your vehicle garage.
+- `/return [vehicleId]` _(alias: `/vi`)_ – Retrieve a vehicle from the impound.
 
-##### _You're only able to spawn vehicles that are in the `stored` state._
+#### Admin Commands
 
-#### `/park` _(alias: `/vp`)_
+- `/addveh [model] [playerId]` – Adds a vehicle to database and target player's vehicle garage.
+- `/deleteveh [plate]` _(alias: `/delveh`)_ – Removes a vehicle from database and owner's vehicle garage.
+- `/admincar [model]` _(alias: `/acar`)_ – Spawns and saves vehicle to database and your vehicle garage.
+- `/alist [playerId]` _(alias: `/avg`)_ – Lists target player's owned vehicles.
 
-- Stores your vehicle into your vehicle garage.
+## Contribute
 
-#### `/return [vehicleId]` _(alias: `/vi`)_
-
-- Retrieve your vehicle from the impound via its unique identifier, restoring it to the `stored` state.
-
-##### _This command will only work if you are within the radius of the location defined in `static/config.json`._
-
-#### [ADMIN] `/addvehicle [model] [playerId]`
-
-- Adds a vehicle to the database and target player's vehicle garage.
-
-#### [ADMIN] `/adeletevehicle [plate]` _(alias: `/delveh`)_
-
-- Removes a vehicle from the database and owner's vehicle garage.
-
-##### _This action cannot be reversed._
-
-#### [ADMIN] `/admincar [model]` _(alias: `/acar`)_
-
-- Spawns a vehicle and saves it to the database and your vehicle garage.
-
-#### [ADMIN] `/alist [playerId]` _(alias: `/avg`)_
-
-- Displays a list of the target player's owned vehicles.
-
-## Contact
-
-For any feedback or support regarding this script, you can either create an issue or reach out on [Discord](https://discord.com/invite/r7X3hztFG4).
+This open-source project welcomes all contributions. Feel free to report issues [here](https://github.com/augustuscole/fivem-parking/issues) and suggest features or submit pull requests [here](https://github.com/augustuscole/fivem-parking/pulls).
 
 ## Credits
 
