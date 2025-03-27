@@ -1,11 +1,11 @@
 import * as Cfx from '@nativewrappers/fivem';
 import { GetPlayer, SpawnVehicle } from '@overextended/ox_core/server';
-import { addCommand, onClientCallback } from '@overextended/ox_lib/server';
+import { onClientCallback } from '@overextended/ox_lib/server';
 import Config from '../common/config';
 import Locale from '../common/locale';
 import { hasItem, removeItem, sendChatMessage, sendLog } from '../common/utils';
+import './commands';
 import db from './db';
-import { Garage } from './garage/class';
 
 onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, vehicleId: number) => {
   const player = GetPlayer(source);
@@ -49,72 +49,4 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
   await sendLog(
     `[VEHICLE] ${player.get('name')} (${source}) just spawned their vehicle #${vehicleId}! Position: ${player.getCoords()[0]} ${player.getCoords()[1]} ${player.getCoords()[2]} - dimension: ${GetPlayerRoutingBucket(String(source))}.`,
   );
-});
-
-addCommand(['list', 'vg'], Garage.prototype.listVehicles, {
-  restricted: false,
-});
-
-addCommand(['park', 'vp'], Garage.prototype.parkVehicle, {
-  restricted: false,
-});
-
-addCommand(['return', 'vi'], Garage.prototype.returnVehicle, {
-  params: [
-    {
-      name: 'vehicleId',
-      paramType: 'number',
-      optional: false,
-    },
-  ],
-  restricted: false,
-});
-
-addCommand(['addvehicle'], Garage.prototype.adminGiveVehicle, {
-  params: [
-    {
-      name: 'model',
-      paramType: 'string',
-      optional: false,
-    },
-    {
-      name: 'playerId',
-      paramType: 'number',
-      optional: false,
-    },
-  ],
-  restricted: 'group.admin',
-});
-
-addCommand(['adeletevehicle', 'delveh'], Garage.prototype.adminDeleteVehicle, {
-  params: [
-    {
-      name: 'plate',
-      paramType: 'string',
-      optional: false,
-    },
-  ],
-  restricted: 'group.admin',
-});
-
-addCommand(['admincar', 'acar'], Garage.prototype.adminSetVehicle, {
-  params: [
-    {
-      name: 'model',
-      paramType: 'string',
-      optional: false,
-    },
-  ],
-  restricted: 'group.admin',
-});
-
-addCommand(['alist', 'avg'], Garage.prototype.adminViewVehicles, {
-  params: [
-    {
-      name: 'playerId',
-      paramType: 'number',
-      optional: false,
-    },
-  ],
-  restricted: 'group.admin',
 });

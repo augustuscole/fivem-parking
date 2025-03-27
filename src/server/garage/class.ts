@@ -21,7 +21,7 @@ export class Garage {
     this.stored = stored;
   }
 
-  async listVehicles(source: number) {
+  public async listVehicles(source: number) {
     const player = GetPlayer(source);
 
     if (!player?.charId) return [];
@@ -37,7 +37,7 @@ export class Garage {
     return vehicles;
   }
 
-  async parkVehicle(source: number): Promise<boolean> {
+  public async parkVehicle(source: number): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;
@@ -71,7 +71,7 @@ export class Garage {
     return true;
   }
 
-  async returnVehicle(source: number, args: { vehicleId: number }): Promise<boolean> {
+  public async returnVehicle(source: number, args: { vehicleId: number }): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;
@@ -109,7 +109,7 @@ export class Garage {
     return true;
   }
 
-  async adminGiveVehicle(source: number, args: { model: string; playerId: number }): Promise<boolean> {
+  public async adminGiveVehicle(source: number, args: { model: string; playerId: number }): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;
@@ -137,7 +137,7 @@ export class Garage {
     return true;
   }
 
-  async adminDeleteVehicle(source: number, args: { plate: string }): Promise<boolean> {
+  public async adminDeleteVehicle(source: number, args: { plate: string }): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;
@@ -162,7 +162,7 @@ export class Garage {
     return true;
   }
 
-  async adminSetVehicle(source: number, args: { model: string }): Promise<boolean> {
+  public async adminSetVehicle(source: number, args: { model: string }): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;
@@ -183,7 +183,7 @@ export class Garage {
     return true;
   }
 
-  async adminViewVehicles(source: number, args: { playerId: number }): Promise<boolean> {
+  public async adminViewVehicles(source: number, args: { playerId: number }): Promise<boolean> {
     const player = GetPlayer(source);
 
     if (!player?.charId) return false;

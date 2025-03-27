@@ -20,23 +20,23 @@ const db = new (class Database {
     return this.handle(this.prisma.vehicles.findFirst({ where: filter, select: { id: true } }), 'filterVehicle');
   }
 
-  async getVehicleById(id: number) {
+  public async getVehicleById(id: number) {
     return (await this.filterVehicle({ id })) ?? false;
   }
 
-  async getVehicleOwner(id: number, owner: number) {
+  public async getVehicleOwner(id: number, owner: number) {
     return (await this.filterVehicle({ id, owner })) ?? false;
   }
 
-  async getVehicleStatus(id: number, status: string) {
+  public async getVehicleStatus(id: number, status: string) {
     return await this.handle(this.prisma.vehicles.findFirst({ where: { id, stored: status } }), 'getVehicleStatus');
   }
 
-  async getVehiclePlate(plate: string) {
+  public async getVehiclePlate(plate: string) {
     return await this.handle(this.prisma.vehicles.findFirst({ where: { plate } }), 'getVehiclePlate');
   }
 
-  async getOwnedVehicles(owner: number) {
+  public async getOwnedVehicles(owner: number) {
     return (
       (await this.handle(
         this.prisma.vehicles.findMany({
@@ -48,14 +48,14 @@ const db = new (class Database {
     );
   }
 
-  async setVehicleStatus(id: number, status: string) {
+  public async setVehicleStatus(id: number, status: string) {
     return await this.handle(
       this.prisma.vehicles.update({ where: { id }, data: { stored: status } }),
       'setVehicleStatus',
     );
   }
 
-  async deleteVehicle(plate: string) {
+  public async deleteVehicle(plate: string) {
     return await this.handle(this.prisma.vehicles.delete({ where: { plate } }), 'deleteVehicle');
   }
 })();
