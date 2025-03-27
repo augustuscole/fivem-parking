@@ -2,7 +2,7 @@
   "name": "fivem-parking",
   "description": "Server-side vehicle garage for FiveM",
   "author": "augustuscole & BerkieB",
-  "version": "0.32.3",
+  "version": "0.32.4",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -22,7 +22,8 @@
   },
   "bugs": "https://github.com/augustuscole/fivem-parking/issues",
   "dependencies": {
-    "@nativewrappers/fivem": "^0.0.89",
+    "@nativewrappers/fivem": "^0.0.90",
+    "@nativewrappers/server": "^0.0.90",
     "@overextended/ox_core": "^1.5.1",
     "@overextended/ox_lib": "latest",
     "@prisma/client": "^6.5.0",
