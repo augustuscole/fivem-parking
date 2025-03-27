@@ -54,12 +54,12 @@ export class Garage {
       return false;
     }
 
-    if (!hasItem(source, 'money', Config.Garage.StoreCost)) {
+    if (!hasItem(source, Config.Item, Config.Garage.StoreCost)) {
       sendChatMessage(source, Locale('not_enough_money'));
       return false;
     }
 
-    const success = await removeItem(source, 'money', Config.Garage.StoreCost);
+    const success = await removeItem(source, Config.Item, Config.Garage.StoreCost);
     if (!success) return false;
 
     vehicle.setStored('stored', true);
@@ -95,12 +95,12 @@ export class Garage {
       return false;
     }
 
-    if (!hasItem(source, 'money', Config.Impound.Cost)) {
+    if (!hasItem(source, Config.Item, Config.Impound.Cost)) {
       sendChatMessage(source, Locale('not_enough_money'));
       return false;
     }
 
-    const success = await removeItem(source, 'money', Config.Impound.Cost);
+    const success = await removeItem(source, Config.Item, Config.Impound.Cost);
     if (!success) return false;
 
     await db.setVehicleStatus(vehicleId, 'stored');

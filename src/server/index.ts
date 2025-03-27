@@ -24,12 +24,12 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
     return false;
   }
 
-  if (!hasItem(source, 'money', Config.Garage.RetrieveCost)) {
+  if (!hasItem(source, Config.Item, Config.Garage.RetrieveCost)) {
     sendChatMessage(source, Locale('not_enough_money'));
     return false;
   }
 
-  const money = await removeItem(source, 'money', Config.Garage.RetrieveCost);
+  const money = await removeItem(source, Config.Item, Config.Garage.RetrieveCost);
   if (!money) return false;
 
   await Cfx.Delay(100);

@@ -38,13 +38,13 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 ### Commands
 
-#### Player Commands
+#### Player
 
 - `/list` _(alias: `/vg`)_ – Lists owned vehicles and their status; only `stored` vehicles can be spawned.
 - `/park` _(alias: `/vp`)_ – Store a vehicle in your vehicle garage.
 - `/return [vehicleId]` _(alias: `/vi`)_ – Retrieve a vehicle from the impound.
 
-#### Admin Commands
+#### Admin
 
 - `/addveh [model] [playerId]` – Adds a vehicle to database and target player's vehicle garage.
 - `/deleteveh [plate]` _(alias: `/delveh`)_ – Removes a vehicle from database and owner's vehicle garage.
@@ -53,7 +53,7 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 ## Contribute
 
-This open-source project welcomes all contributions. Feel free to report issues [here](https://github.com/augustuscole/fivem-parking/issues) and suggest features or submit pull requests [here](https://github.com/augustuscole/fivem-parking/pulls).
+This open-source project welcomes all contributions. Visit the [GitHub repository](https://github.com/augustuscole/fivem-parking) to report issues, suggest features, or submit pull requests.
 
 ## Credits
 
