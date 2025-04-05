@@ -1,6 +1,6 @@
 {
   "files": {
-    "include": ["client/*.ts", "server/*.ts"]
+    "include": ["./src/**/*.ts"]
   },
   "linter": {
     "enabled": true,
@@ -45,5 +45,22 @@
     "indentWidth": 2,
     "lineWidth": 120,
     "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
   }
 }

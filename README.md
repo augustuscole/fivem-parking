@@ -1,6 +1,12 @@
+[![](https://github.com/user-attachments/assets/3e7cc18b-8e52-4593-95f1-3b42dfdd3ed1)](https://stand-with-ukraine.pp.ua)
+
 # fivem-parking
 
-A simple vehicle garage system created with a more versatile structure, allowing players to conveniently store and retrieve owned vehicles from any location.
+A realistic vehicle garage system for FiveM, allowing players to store and retrieve owned vehicles from any location.
+
+[![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
+[![](https://img.shields.io/github/contributors/jacobbernoulli/fivem-parking?logo=github)](https://github.com/jacobbernoulli/fivem-parking/graphs/contributors)
+[![](https://img.shields.io/github/last-commit/jacobbernoulli/fivem-parking?logo=github)](https://github.com/jacobbernoulli/fivem-parking/commits/main)
 
 ## Features
 
@@ -11,21 +17,19 @@ A simple vehicle garage system created with a more versatile structure, allowing
 
 ## Installation
 
-##### _If you download the source code via the green `Code` button, you'll need to build the resource. Information on how to do this is provided below. If you prefer not to build it, you can download latest release and drag and drop it into your server. However, any changes made to the built resource will need to be re-built to apply the changes._
-
 ### Dependencies
 
 - [ox_core](https://github.com/overextended/ox_core)
 - [ox_lib](https://github.com/overextended/ox_lib)
 - [ox_inventory](https://github.com/overextended/ox_inventory)
 
-### Building this resource
+### Build
 
 1. Download and install the LTS version of [Node.js](https://nodejs.org/en).
 2. Open a command-line terminal (e.g., Terminal, Command Prompt).
 3. Enter `node --version` to verify the installation.
 4. Run `npm install -g pnpm` to globally install the package manager [pnpm](https://pnpm.io).
-5. Download or clone the repository with `git clone https://github.com/arlofonseca/fivem-parking`.
+5. Download or clone the repository with `git clone https://github.com/jacobbernoulli/fivem-parking`.
 6. Install all dependencies with `pnpm i`.
 7. Create a new file named `.env` within the root directory.
 8. Copy the contents of `.env.example` to the newly created `.env` file and edit accordingly.
@@ -38,47 +42,18 @@ Use `pnpm watch` to rebuild whenever a file is modified.
 
 ### Commands
 
-#### `/list` _(alias: `/vl`)_
+#### Player
 
-- Displays a list of your owned vehicles.
+- `/list` _(alias: `/vg`)_ – Lists owned vehicles and their status; only `stored` vehicles can be spawned.
+- `/park` _(alias: `/vp`)_ – Store a vehicle in your vehicle garage.
+- `/return [vehicleId]` _(alias: `/vi`)_ – Retrieve a vehicle from the impound.
 
-#### `/get [vehicleId]` _(alias: `/vg`)_
+#### Admin
 
-- Alternative way to retrieve a vehicle from your vehicle garage via its unique identifier.
-
-_If you do not know the unique identifier of your vehicle, you can find it when executing the `/list` command._
-
-#### `/park` _(alias: `/vp`)_
-
-- Stores your vehicle into your vehicle garage.
-
-#### `/impound [vehicleId]` _(alias: `/rv`)_
-
-- Retrieve your vehicle from the impound via its unique identifier, restoring it to the `stored` state.
-
-_This will only work if you are within the radius of the location defined in `config.json`._
-
-#### [ADMIN] `/adeletevehicle [plate]` _(alias: `/delveh`)_
-
-- Removes a vehicle from the database.
-
-_This action cannot be reversed._
-
-#### [ADMIN] `/admincar [model]` _(alias: `/acar`)_
-
-- Spawns a vehicle and saves it to both the database and your vehicle garage.
-
-#### [ADMIN] `/addvehicle [playerId] [model]`
-
-- Adds a vehicle to the target player's vehicle garage.
-
-#### [ADMIN] `/playervehicles [playerId]`
-
-- Displays a list of the target player's owned vehicles.
-
-## Support
-
-For any feedback or support regarding this script, please reach out on [discord](https://discord.com/invite/QZgyyBkUkp).
+- `/addveh [model] [playerId]` – Adds a vehicle to database and target player's vehicle garage.
+- `/deleteveh [plate]` _(alias: `/delveh`)_ – Removes a vehicle from database and owner's vehicle garage.
+- `/admincar [model]` _(alias: `/acar`)_ – Spawns and saves vehicle to database and your vehicle garage.
+- `/alist [playerId]` _(alias: `/avg`)_ – Lists target player's owned vehicles.
 
 ## Credits
 

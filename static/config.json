@@ -1,0 +1,19 @@
+{
+  "Garage": {
+    "StoreCost": 300,
+    "RetrieveCost": 500
+  },
+  "Impound": {
+    "Cost": 1000,
+    "Location": [
+      {
+        "x": 407.9077,
+        "y": -1632.7781,
+        "z": 29.6505,
+        "radius": 10
+      }
+    ]
+  },
+  "Item": "money",
+  "Webhook": "https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks"
+}

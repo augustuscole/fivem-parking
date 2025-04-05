@@ -1,19 +1,17 @@
 {
   "compilerOptions": {
     "moduleResolution": "bundler",
-    "module": "es2020",
-    "target": "es2021",
-    "lib": ["es2021"],
+    "module": "es2022",
+    "target": "es2023",
+    "lib": ["es2023"],
     "types": ["@citizenfx/client", "@citizenfx/server", "@types/node"],
-    "strictNullChecks": true,
-    "noImplicitAny": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "allowUnreachableCode": false
   },
-  "include": ["./**/*"],
-  "exclude": ["node_modules"],
-  "semi": [true, "always"]
+  "include": ["./src"]
 }

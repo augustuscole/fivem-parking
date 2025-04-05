@@ -1,0 +1,20 @@
+{
+  "your_vehicles": "Your Vehicles",
+  "something_went_wrong": "^#d73232ERROR ^#ffffffSomething went wrong.",
+  "no_vehicles_owned": "^#d73232ERROR ^#ffffffYou do not own any vehicles!",
+  "no_player_found": "^#d73232ERROR ^#ffffffNo player with the specified ID found.",
+  "no_vehicles_for_player": "^#d73232ERROR ^#ffffffNo vehicles found for player with the specified ID.",
+  "not_inside_vehicle": "^#d73232ERROR ^#ffffffYou are not inside of a vehicle!",
+  "not_vehicle_owner": "^#d73232ERROR ^#ffffffYou are not the owner of this vehicle!",
+  "not_enough_money": "^#d73232ERROR ^#ffffffYou do not have enough money!",
+  "not_in_impound_area": "^#d73232ERROR ^#ffffffYou are not in the impound area!",
+  "not_impounded": "^#d73232ERROR ^#ffffffVehicle is not impounded!",
+  "success_store": "^#5e81ac[INFO] ^#ffffffSuccessfully parked vehicle.",
+  "success_restore": "^#5e81ac[INFO] ^#ffffffSuccessfully restored vehicle.",
+  "success_spawned": "^#5e81ac[INFO] ^#ffffffSuccessfully spawned vehicle.",
+  "success_deleted": "^#5e81ac[INFO] ^#ffffffSuccessfully deleted vehicle with the specified plate number from the database.",
+  "failed_to_spawn": "^#d73232ERROR ^#ffffffFailed to spawn the vehicle.",
+  "failed_to_give": "^#d73232ERROR ^#ffffffFailed to give vehicle.",
+  "failed_to_find": "^#d73232ERROR ^#ffffffFailed to find vehicle.",
+  "failed_to_delete": "^#d73232ERROR ^#ffffffFailed to delete vehicle with the specified plate number from the database."
+}
