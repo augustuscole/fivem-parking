@@ -1,10 +1,9 @@
 import { context } from 'esbuild';
+import { readFile } from 'fs/promises';
 import path from 'path';
 import process from 'process';
-import { exists, generateManifest, getUtf8 } from './utils.js';
 
 const watch = process.argv.includes('--watch');
-const manifest = await exists('./fxmanifest.lua');
 
 async function build(development) {
   const ctx = await context({
@@ -19,7 +18,7 @@ async function build(development) {
         name: 'build',
         setup(build) {
           build.onLoad({ filter: /.\.(js|ts)$/ }, async (args) => {
-            const data = await getUtf8(args.path);
+            const data = await readFile(args.path, 'utf8');
             const escape = (p) => (/^win/.test(process.platform) ? p.replace(/\\/g, '/') : p);
 
             const global = /__(?=(filename|dirname))/g;
@@ -31,9 +30,7 @@ async function build(development) {
 
             const insert = data
               .split('\n')
-              .map((line, index) => {
-                return `${line.includes('__line') ? `__line=${index + 1};` : ''}${line}`;
-              })
+              .map((line, index) => `${line.includes('__line') ? `__line=${index + 1};` : ''}${line}`)
               .join('\n');
 
             return {
@@ -54,15 +51,6 @@ async function build(development) {
             console.log(development ? 'Successfully built (development)' : 'Successfully built (production)');
 
             if (!development) {
-              if (!manifest) {
-                await generateManifest({
-                  client: ['dist/client/*.js'],
-                  server: ['dist/server/*.js'],
-                  files: ['locales/*.json'],
-                  dependencies: ['/server:12913', '/onesync', 'ox_lib', 'ox_core', 'ox_inventory'],
-                  metadata: { node_version: '22' },
-                });
-              }
               process.exit(0);
             }
           });
@@ -70,11 +58,6 @@ async function build(development) {
       },
     ],
   });
-
-  if (development && !manifest) {
-    console.log('fxmanifest.lua not found, run `pnpm build` to generate it.');
-    process.exit(1);
-  }
 
   if (development) {
     await ctx.watch();

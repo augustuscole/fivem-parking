@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "connect": "npx prisma db pull && npx prisma generate",
-    "build": "node scripts/build.js",
+    "build": "node scripts/build.js && go run scripts/manifest.go",
     "watch": "node scripts/build.js --watch",
     "ci": "pnpm run connect && pnpm run build",
     "format": "pnpm biome format --write",
