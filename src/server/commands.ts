@@ -1,4 +1,5 @@
 import { Command } from '@nativewrappers/server';
+import Config from '../common/config';
 import { Garage } from './garage/class';
 
 new Command(['list', 'vg'], 'View a list of your owned vehicles.', async ({ source }) => {
@@ -39,12 +40,12 @@ new Command(
       type: 'number',
     },
   ] as const,
-  'group.admin',
+  Config.Group,
 );
 
 new Command(
   ['deleteveh', 'delveh'],
-  "Delete a vehicle from the database and the owner's personal garage",
+  "Delete a vehicle from the database and the owner's personal garage.",
   async (args) => {
     await Garage.prototype.adminDeleteVehicle(args.source, { plate: args.plate });
   },
@@ -54,7 +55,7 @@ new Command(
       type: 'string',
     },
   ] as const,
-  'group.admin',
+  Config.Group,
 );
 
 new Command(
@@ -69,7 +70,7 @@ new Command(
       type: 'string',
     },
   ] as const,
-  'group.admin',
+  Config.Group,
 );
 
 new Command(
@@ -84,5 +85,5 @@ new Command(
       type: 'number',
     },
   ] as const,
-  'group.admin',
+  Config.Group,
 );

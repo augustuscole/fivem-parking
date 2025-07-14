@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"reflect"
 	"strings"
 )
 
@@ -62,7 +63,7 @@ func new(config *Config) *ManifestGenerator {
 
 func (mg *ManifestGenerator) load() (*Package, error) {
 	if _, err := os.Stat(mg.config.Package); os.IsNotExist(err) {
-		return nil, fmt.Errorf("os.Stat(); os.IsNotExist()")
+		return nil, fmt.Errorf("os.Stat(); os.IsNotExist(): %w", err)
 	}
 
 	data, err := os.ReadFile(mg.config.Package)
@@ -79,9 +80,15 @@ func (mg *ManifestGenerator) load() (*Package, error) {
 }
 
 func sanitize(s string) string {
-	s = strings.ReplaceAll(s, "'", "\\'")
-	s = strings.ReplaceAll(s, "\n", "\\n")
-	s = strings.ReplaceAll(s, "\r", "\\r")
+	replace := map[string]string{
+		"'":  "\\'",
+		"\n": "\\n",
+		"\r": "\\r",
+	}
+
+	for old, new := range replace {
+		s = strings.ReplaceAll(s, old, new)
+	}
 	return s
 }
 
@@ -101,64 +108,69 @@ func add(lines *[]string, title string, items []string) {
 	*lines = append(*lines, "}")
 }
 
+func merge(defaults Defaults, manifest *Defaults) Defaults {
+	if manifest == nil {
+		return defaults
+	}
+
+	result := defaults
+	value := reflect.ValueOf(&result).Elem()
+	data := reflect.ValueOf(manifest).Elem()
+
+	for i := 0; i < data.NumField(); i++ {
+		field := data.Field(i)
+		if !field.IsZero() {
+			value.Field(i).Set(field)
+		}
+	}
+
+	return result
+}
+
+func optional(lines *[]string, field, value string) {
+	if value != "" {
+		*lines = append(*lines, fmt.Sprintf("%s '%s'", field, sanitize(value)))
+	}
+}
+
 func (mg *ManifestGenerator) write(pkg *Package) string {
 	var lines []string
 
-	config := mg.config.Defaults
-	if pkg.Manifest != nil {
-		if pkg.Manifest.FxVersion != "" {
-			config.FxVersion = pkg.Manifest.FxVersion
-		}
-		if pkg.Manifest.Game != "" {
-			config.Game = pkg.Manifest.Game
-		}
-		if pkg.Manifest.NodeVersion != "" {
-			config.NodeVersion = pkg.Manifest.NodeVersion
-		}
-		if len(pkg.Manifest.Client) > 0 {
-			config.Client = pkg.Manifest.Client
-		}
-		if len(pkg.Manifest.Server) > 0 {
-			config.Server = pkg.Manifest.Server
-		}
-		if len(pkg.Manifest.Files) > 0 {
-			config.Files = pkg.Manifest.Files
-		}
-		if len(pkg.Manifest.Dependencies) > 0 {
-			config.Dependencies = pkg.Manifest.Dependencies
-		}
-	}
+	config := merge(mg.config.Defaults, pkg.Manifest)
 
 	lines = append(lines, fmt.Sprintf("fx_version '%s'", config.FxVersion))
 	lines = append(lines, fmt.Sprintf("game '%s'", config.Game))
 
-	if pkg.Name != "" {
-		lines = append(lines, fmt.Sprintf("name '%s'", sanitize(pkg.Name)))
-	}
-	if pkg.Description != "" {
-		lines = append(lines, fmt.Sprintf("description '%s'", sanitize(pkg.Description)))
-	}
-	if pkg.Author != "" {
-		lines = append(lines, fmt.Sprintf("author '%s'", sanitize(pkg.Author)))
-	}
-	if pkg.Version != "" {
-		lines = append(lines, fmt.Sprintf("version '%s'", sanitize(pkg.Version)))
-	}
-	if pkg.Repository.URL != "" {
-		lines = append(lines, fmt.Sprintf("repository '%s'", sanitize(pkg.Repository.URL)))
-	}
-	if pkg.License != "" {
-		lines = append(lines, fmt.Sprintf("license '%s'", sanitize(pkg.License)))
+	opt := []struct {
+		field string
+		value string
+	}{
+		{"name", pkg.Name},
+		{"description", pkg.Description},
+		{"author", pkg.Author},
+		{"version", pkg.Version},
+		{"repository", pkg.Repository.URL},
+		{"license", pkg.License},
+		{"node_version", config.NodeVersion},
 	}
 
-	if config.NodeVersion != "" {
-		lines = append(lines, fmt.Sprintf("node_version '%s'", config.NodeVersion))
+	for _, pf := range opt {
+		optional(&lines, pf.field, pf.value)
 	}
 
-	add(&lines, "client_scripts", config.Client)
-	add(&lines, "server_scripts", config.Server)
-	add(&lines, "files", config.Files)
-	add(&lines, "dependencies", config.Dependencies)
+	req := []struct {
+		title string
+		items []string
+	}{
+		{"client_scripts", config.Client},
+		{"server_scripts", config.Server},
+		{"files", config.Files},
+		{"dependencies", config.Dependencies},
+	}
+
+	for _, section := range req {
+		add(&lines, section.title, section.items)
+	}
 
 	return strings.Join(lines, "\n")
 }
@@ -186,5 +198,5 @@ func main() {
 		log.Fatalf("generator.Generate(): %v", err)
 	}
 
-	fmt.Printf("Successfully generated %s", config.Output)
+	fmt.Printf("Successfully generated %s\n", config.Output)
 }
