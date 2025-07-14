@@ -25,9 +25,9 @@ A realistic vehicle garage system for FiveM, allowing players to store and retri
 
 ### Build
 
-1. Download and install the LTS version of [Node.js](https://nodejs.org/en).
+1. Download the LTS version of [Node.js](https://nodejs.org/en) and the latest version of [Go](https://go.dev/dl/).
 2. Open a command-line terminal (e.g., Terminal, Command Prompt).
-3. Enter `node --version` to verify the installation.
+3. Enter `node --version` and `go version` to verify the installation.
 4. Run `npm install -g pnpm` to globally install the package manager [pnpm](https://pnpm.io).
 5. Download or clone the repository with `git clone https://github.com/jacobbernoulli/fivem-parking`.
 6. Install all dependencies with `pnpm i`.

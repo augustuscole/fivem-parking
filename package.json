@@ -1,6 +1,6 @@
 {
   "name": "fivem-parking",
-  "description": "Server-side vehicle garage for FiveM",
+  "description": "Server-side vehicle garage for CitizenFX servers.",
   "author": "BerkieBb, jacobbernoulli",
   "version": "0.32.4",
   "license": "MIT",
@@ -13,14 +13,21 @@
     "format": "pnpm biome format --write",
     "lint": "pnpm biome lint --write"
   },
-  "prisma": {
-    "schema": "./schema.prisma"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jacobbernoulli/fivem-parking.git"
   },
   "bugs": "https://github.com/jacobbernoulli/fivem-parking/issues",
+  "prisma": {
+    "schema": "./schema.prisma"
+  },
+  "manifest": {
+    "fx_version": "cerulean",
+    "client_scripts": ["dist/client/*.js"],
+    "server_scripts": ["dist/server/*.js"],
+    "files": ["locales/*.json"],
+    "dependencies": ["/server:12913", "/onesync", "ox_lib", "ox_core", "ox_inventory"]
+  },
   "dependencies": {
     "@nativewrappers/fivem": "^0.0.90",
     "@nativewrappers/server": "^0.0.90",
