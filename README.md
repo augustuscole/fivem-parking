@@ -5,8 +5,8 @@
 A realistic vehicle garage system for FiveM, allowing players to store and retrieve owned vehicles from any location.
 
 [![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
-[![](https://img.shields.io/github/contributors/jacobbernoulli/fivem-parking?logo=github)](https://github.com/jacobbernoulli/fivem-parking/graphs/contributors)
-[![](https://img.shields.io/github/last-commit/jacobbernoulli/fivem-parking?logo=github)](https://github.com/jacobbernoulli/fivem-parking/commits/main)
+[![](https://img.shields.io/github/contributors/bd53/fivem-parking?logo=github)](https://github.com/bd53/fivem-parking/graphs/contributors)
+[![](https://img.shields.io/github/last-commit/bd53/fivem-parking?logo=github)](https://github.com/bd53/fivem-parking/commits/main)
 
 ## Features
 
@@ -29,7 +29,7 @@ A realistic vehicle garage system for FiveM, allowing players to store and retri
 2. Open a command-line terminal (e.g., Terminal, Command Prompt).
 3. Enter `node --version` and `go version` to verify the installation.
 4. Run `npm install -g pnpm` to globally install the package manager [pnpm](https://pnpm.io).
-5. Download or clone the repository with `git clone https://github.com/jacobbernoulli/fivem-parking`.
+5. Download or clone the repository with `git clone https://github.com/bd53/fivem-parking`.
 6. Install all dependencies with `pnpm i`.
 7. Create a new file named `.env` within the root directory.
 8. Copy the contents of `.env.example` to the newly created `.env` file and edit accordingly.
