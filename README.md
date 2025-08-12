@@ -1,5 +1,3 @@
-[![](https://github.com/user-attachments/assets/3e7cc18b-8e52-4593-95f1-3b42dfdd3ed1)](https://stand-with-ukraine.pp.ua)
-
 # fivem-parking
 
 A realistic vehicle garage system for FiveM, allowing players to store and retrieve owned vehicles from any location.
@@ -7,6 +5,8 @@ A realistic vehicle garage system for FiveM, allowing players to store and retri
 [![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
 [![](https://img.shields.io/github/contributors/bd53/fivem-parking?logo=github)](https://github.com/bd53/fivem-parking/graphs/contributors)
 [![](https://img.shields.io/github/last-commit/bd53/fivem-parking?logo=github)](https://github.com/bd53/fivem-parking/commits/main)
+
+For additional legal notices, refer to [NOTICE.md](./NOTICE.md).
 
 ## Features
 
