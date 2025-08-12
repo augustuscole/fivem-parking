@@ -9,9 +9,7 @@
     "connect": "npx prisma db pull && npx prisma generate",
     "build": "node scripts/build.js && go run scripts/manifest.go",
     "watch": "node scripts/build.js --watch",
-    "ci": "pnpm run connect && pnpm run build",
-    "format": "pnpm biome format --write",
-    "lint": "pnpm biome lint --write"
+    "ci": "pnpm run connect && pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -48,7 +46,6 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
     "@types/node": "^22.13.11",

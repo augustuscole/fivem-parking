@@ -46,7 +46,5 @@ onClientCallback('fivem-parking:server:spawnVehicle', async (source: number, veh
 
   await db.setVehicleStatus(vehicleId, 'outside');
   sendChatMessage(source, Locale('success_spawned'));
-  await sendLog(
-    `[VEHICLE] ${player.get('name')} (${source}) just spawned their vehicle #${vehicleId}! Position: ${player.getCoords()[0]} ${player.getCoords()[1]} ${player.getCoords()[2]} - dimension: ${GetPlayerRoutingBucket(String(source))}.`,
-  );
+  await sendLog(`[VEHICLE] ${player.get('name')} (${source}) just spawned their vehicle #${vehicleId}! Position: ${player.getCoords()[0]} ${player.getCoords()[1]} ${player.getCoords()[2]} - dimension: ${GetPlayerRoutingBucket(String(source))}.`);
 });

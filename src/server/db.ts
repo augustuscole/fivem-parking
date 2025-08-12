@@ -37,22 +37,11 @@ const db = new (class Database {
   }
 
   public async getOwnedVehicles(owner: number) {
-    return (
-      (await this.handle(
-        this.prisma.vehicles.findMany({
-          where: { owner },
-          select: { id: true, plate: true, owner: true, model: true, stored: true },
-        }),
-        'getOwnedVehicles',
-      )) ?? []
-    );
+    return ((await this.handle(this.prisma.vehicles.findMany({ where: { owner }, select: { id: true, plate: true, owner: true, model: true, stored: true } }), 'getOwnedVehicles')) ?? []);
   }
 
   public async setVehicleStatus(id: number, status: string) {
-    return await this.handle(
-      this.prisma.vehicles.update({ where: { id }, data: { stored: status } }),
-      'setVehicleStatus',
-    );
+    return await this.handle(this.prisma.vehicles.update({ where: { id }, data: { stored: status } }), 'setVehicleStatus');
   }
 
   public async deleteVehicle(plate: string) {

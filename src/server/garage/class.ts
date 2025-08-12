@@ -64,9 +64,7 @@ export class Garage {
 
     vehicle.setStored('stored', true);
     sendChatMessage(source, Locale('success_store'));
-    await sendLog(
-      `[VEHICLE] ${player.get('name')} (${source}) just parked vehicle #${vehicle.id} with plate #${vehicle.plate} at X: ${player.getCoords()[0]} Y: ${player.getCoords()[1]} Z: ${player.getCoords()[2]}, dimension: #${GetPlayerRoutingBucket(String(source))}.`,
-    );
+    await sendLog(`[VEHICLE] ${player.get('name')} (${source}) just parked vehicle #${vehicle.id} with plate #${vehicle.plate} at X: ${player.getCoords()[0]} Y: ${player.getCoords()[1]} Z: ${player.getCoords()[2]}, dimension: #${GetPlayerRoutingBucket(String(source))}.`);
 
     return true;
   }
@@ -201,22 +199,9 @@ export class Garage {
       return false;
     }
 
-    sendChatMessage(
-      source,
-      `^#5e81ac--------- ^#ffffff${target.get('name')} (${playerId}) Owned Vehicles ^#5e81ac---------`,
-    );
-    sendChatMessage(
-      source,
-      vehicles
-        .map(
-          (vehicle: { id: number; plate: string; model: string; stored: string | null }): string =>
-            `ID: ^#5e81ac${vehicle.id} ^#ffffff| Plate: ^#5e81ac${vehicle.plate} ^#ffffff| Model: ^#5e81ac${vehicle.model} ^#ffffff| Status: ^#5e81ac${vehicle.stored ?? 'N/A'}^#ffffff --- `,
-        )
-        .join('\n'),
-    );
-    await sendLog(
-      `${player.get('name')} (${source}) just used '/playervehicles' on ${target.get('name')} (${target.source}).`,
-    );
+    sendChatMessage(source, `^#5e81ac--------- ^#ffffff${target.get('name')} (${playerId}) Owned Vehicles ^#5e81ac---------`);
+    sendChatMessage(source, vehicles.map((vehicle: { id: number; plate: string; model: string; stored: string | null }): string => `ID: ^#5e81ac${vehicle.id} ^#ffffff| Plate: ^#5e81ac${vehicle.plate} ^#ffffff| Model: ^#5e81ac${vehicle.model} ^#ffffff| Status: ^#5e81ac${vehicle.stored ?? 'N/A'}^#ffffff --- `).join('\n'));
+    await sendLog(`${player.get('name')} (${source}) just used '/playervehicles' on ${target.get('name')} (${target.source}).`);
 
     return true;
   }
