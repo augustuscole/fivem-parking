@@ -19,21 +19,32 @@
   },
   "bugs": "https://github.com/bd53/fivem-parking/issues",
   "prisma": {
-    "schema": "./schema.prisma"
+    "schema": "./packages/database/schema.prisma"
   },
   "manifest": {
-    "fx_version": "cerulean",
-    "client_scripts": ["dist/client/*.js"],
-    "server_scripts": ["dist/server/*.js"],
-    "files": ["locales/*.json"],
-    "dependencies": ["/server:12913", "/onesync", "ox_lib", "ox_core", "ox_inventory"]
+    "client_scripts": [
+      "dist/client/*.js"
+    ],
+    "server_scripts": [
+      "dist/server/*.js"
+    ],
+    "files": [
+      "locales/*.json"
+    ],
+    "dependencies": [
+      "/server:12913",
+      "/onesync",
+      "ox_lib",
+      "ox_core",
+      "ox_inventory"
+    ]
   },
   "dependencies": {
     "@nativewrappers/fivem": "^0.0.90",
     "@nativewrappers/server": "^0.0.90",
     "@overextended/ox_core": "^1.5.1",
     "@overextended/ox_lib": "latest",
-    "@prisma/client": "^6.5.0",
+    "@prisma/client": "^6.13.0",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
@@ -42,7 +53,7 @@
     "@citizenfx/server": "latest",
     "@types/node": "^22.13.11",
     "esbuild": "^0.25.1",
-    "prisma": "^6.5.0"
+    "prisma": "^6.13.0"
   },
   "engines": {
     "node": ">=22.9.0"
